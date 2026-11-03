@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedDog — Разработка полезных программ и сайтов</title>
+    <style>
+        :root {
+            --bg-primary: #F5F5F7;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --accent: #0071E3;
+            --accent-hover: #0077ED;
+            --border: #D2D2D7;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-weight: 500;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            font-weight: 600;
+            max-width: 500px;
+        }
+
+        @media (max-width: 767px) {
+            .hero-text h1 {
+                font-size: 36px;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #E8E8ED;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .about-text {
+            font-size: 21px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 800px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .card-link {
+            font-size: 17px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        .socials {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .socials-text {
+            font-size: 21px;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--text-primary);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+
+        .legal-section {
+            margin-bottom: 48px;
+        }
+
+        .legal-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .legal-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .legal-text p {
+            margin-bottom: 12px;
+        }
+
+        .legal-text ul {
+            margin-bottom: 12px;
+            padding-left: 20px;
+        }
+
+        .legal-text li {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>SpeedDog. Разработка полезных программ и сайтов</h1>
+                </div>
+                <div class="hero-actions">
+                    <a href="#about" class="btn btn-primary">Узнать больше</a>
+                    <a href="#projects" class="btn btn-secondary">Сайты и программы</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">О проекте</h2>
+                <p class="about-text">
+                    SpeedDog — новый уникальный проект, нацеленный на создание сайтов, программ на Unity, Python и не только. Мы хотим упростить жизнь в интернете, сделав его удобнее и интереснее. Мы — два разработчика, но у нас очень много крупных и полезных идей, до которых ещё не додумались другие разработчики.
+                </p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Наши проекты</h2>
+                <div class="projects-grid">
+                    <div class="card">
+                        <h3 class="card-title">Останови время</h3>
+                        <p class="card-desc">Игра нацелена на то, чтобы развивать реакцию. Она работает прямо в браузере и доступна по ссылке ниже.</p>
+                        <a href="https://dqiemar.github.io/stoptime" target="_blank" rel="noopener noreferrer" class="card-link">dqiemar.github.io/stoptime →</a>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">PromptAI</h3>
+                        <p class="card-desc">Список промптов для нейросетей. На сайте уже доступно два промпта. Там можно сохранять свои промпты и скачивать промпты других людей.</p>
+                        <span class="card-link">Скоро.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="socials">
+            <div class="container">
+                <p class="socials-text">У нас есть профиль на GitHub и аккаунт в TikTok.</p>
+                <div class="social-icons">
+                    <a href="https://github.com/dqiemar" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@speeddoghtml" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="legal-section">
+                <h3 class="legal-title">Пользовательское соглашение</h3>
+                <div class="legal-text">
+                    <p>1. Общие положения. Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует отношения между проектом SpeedDog (далее — «Администрация») и пользователем сети Интернет (далее — «Пользователь»). Использование сайтов и программных продуктов SpeedDog означает полное и безоговорочное согласие Пользователя с данным Соглашением.</p>
+                    <p>2. Интеллектуальная собственность. Все права на программный код, дизайн, тексты и графические элементы проектов SpeedDog принадлежат разработчикам проекта. Копирование, модификация или распространение материалов без письменного разрешения запрещены.</p>
+                    <p>3. Ограничение ответственности. Все программные продукты и сайты предоставляются на условиях «как есть» (as is). Администрация не несет ответственности за любые прямые или косвенные убытки, возникшие в результате использования или невозможности использования сервисов, включая потерю данных или сбои в работе оборудования.</p>
+                    <p>4. Запрещенные действия. Пользователю строго запрещается использовать сервисы SpeedDog для распространения вредоносного ПО, нарушения авторских прав третьих лиц, распространения незаконного контента или любых действий, нарушающих законодательство Российской Федерации и международные нормы.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <h3 class="legal-title">Политика конфиденциальности</h3>
+                <div class="legal-text">
+                    <p>1. Сбор информации. Мы стремимся минимизировать сбор персональных данных. При использовании наших сервисов мы можем собирать только техническую информацию (тип браузера, IP-адрес) для обеспечения стабильной работы и защиты от злоупотреблений.</p>
+                    <p>2. Хранение данных. Для обеспечения функциональности некоторых проектов (например, сохранение пользовательских промптов или данных игр) мы используем безопасные облачные решения, такие как MongoDB Atlas и Cloudinary. Мы не передаем ваши данные третьим лицам для маркетинговых целей.</p>
+                    <p>3. Защита данных. Администрация применяет организационные и технические меры для защиты пользовательской информации от неправомерного или случайного доступа, уничтожения, изменения или копирования.</p>
+                    <p>4. Права пользователя. Пользователь имеет право запросить информацию о хранящихся о нем данных, а также потребовать их полного удаления, обратившись к Администрации через доступные каналы связи. Мы обязуемся выполнить такой запрос в разумные сроки.</p>
+                    <p>5. Изменения политики. Мы оставляем за собой право обновлять данную Политику конфиденциальности. Продолжение использования сервисов после публикации изменений означает согласие с новой редакцией.</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                © 2026 SpeedDog. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
